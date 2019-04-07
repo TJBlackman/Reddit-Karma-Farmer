@@ -15,7 +15,7 @@ const dissallowedKeyWords = ['violence', 'death', 'rape', 'torture', 'die', 'bod
 
 module.exports = (searchString) => {
     return new Promise((resolve, reject) => {
-        puppeteer.launch({headless: true}).then(async browser => {
+        puppeteer.launch({executablePath: '/usr/bin/chromium-browser'}).then(async browser => {
             try {
               const page = await browser.newPage();
               await page.goto(`https://www.google.com/search?q=${searchString}&tbs=qdr:h&tbm=nws&num=100`);

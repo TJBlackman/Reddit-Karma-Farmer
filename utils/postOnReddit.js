@@ -1,10 +1,10 @@
 const puppeteer = require('puppeteer');
 const creds = require('../assets/credentials');
-
+ 
 module.exports = function(subreddit, post_object){
   return new Promise((resolve, reject) => {
     try {
-      puppeteer.launch({headless: true}).then(async browser => {
+      puppeteer.launch({executablePath: '/usr/bin/chromium-browser'}).then(async browser => {
         try {
           const page = await browser.newPage();
           await page.goto(`https://www.reddit.com/login/`);
@@ -51,7 +51,7 @@ module.exports = function(subreddit, post_object){
               })
             });
           }); 
-  
+          await page.waitFor(5000); 
           browser.close();
           resolve(); 
         }
