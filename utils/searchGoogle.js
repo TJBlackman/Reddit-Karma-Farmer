@@ -7,7 +7,7 @@
 // const newArticle = await searchGoogle('Washington'); 
 // newArticle = {title: 'some title', link: 'some link', time: 2}
 
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const buzz_words = require('../assets/buzz_words');
 
 // words that we DONT want to appear in the news article title

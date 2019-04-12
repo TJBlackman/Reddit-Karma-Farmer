@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const creds = require('../assets/credentials');
  
 module.exports = function(subreddit, post_object){
@@ -8,10 +8,26 @@ module.exports = function(subreddit, post_object){
         try {
           const page = await browser.newPage();
           await page.goto(`https://www.reddit.com/login/`);
-          await page.type('#loginUsername', creds.username, { delay: 100 });
-          await page.type('#loginPassword', creds.password, { delay: 100 });
-          await page.click('button[type="submit"]', { delay: 50 });
+
+          await page.evaluate(function(creds){
+            return new Promise((res, rej) => {
+              document.querySelector('[action="/login"]').username.value = creds.username;
+              document.querySelector('[action="/login"]').password.value = creds.password;
+              document.querySelector('[action="/login"]').password.type = 'text';
+              res();
+            });
+          }, creds);
+
+          await page.evaluate(function(creds){
+            return new Promise((res, rej) => {
+              document.querySelector('[action="/login"]').submit();
+              setTimeout(res, 10000)
+              res();
+            });
+          }, creds);
+
           await page.waitForNavigation();
+          
           await page.goto(`https://www.reddit.com${subreddit}/submit`);
   
           // click Link button, to post a link
