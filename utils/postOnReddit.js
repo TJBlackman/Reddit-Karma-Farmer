@@ -6,6 +6,7 @@ module.exports = function(subreddit, post_object){
     try {
       puppeteer.launch({executablePath: '/usr/bin/chromium-browser'}).then(async browser => {
         try {
+          console.log(`Now posting article on ${subreddit}: `, post_object)
           const page = await browser.newPage();
           await page.goto(`https://www.reddit.com/login/`);
 
@@ -21,7 +22,6 @@ module.exports = function(subreddit, post_object){
           await page.evaluate(function(creds){
             return new Promise((res, rej) => {
               document.querySelector('[action="/login"]').submit();
-              setTimeout(res, 10000)
               res();
             });
           }, creds);
@@ -72,12 +72,12 @@ module.exports = function(subreddit, post_object){
           resolve(); 
         }
         catch(err){
-            console.log(err);
+          browser.close();
         }
       });
     }
     catch(err){
-      reject(err);
+      resolve();
     }
   }); 
 }
