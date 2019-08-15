@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "lowdb": "^1.0.0",
     "puppeteer": "^1.14.0",
     "puppeteer-core": "^1.11.0"
   }

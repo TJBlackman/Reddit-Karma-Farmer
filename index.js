@@ -1,27 +1,31 @@
 const getNewestGoogleSearchFor = require('./utils/searchGoogle');
 const postToReddit = require('./utils/postOnReddit');
 const categories = require('./assets/categories');
+const dbMethods = require('./utils/databaseMethods');
 
 
-(async () => {
-    let index = 0; 
-    const postCycle = 1000 * 60 * 60 * 49.33; // 50 hour cycle
+(() => {
+    const postCycle = 1000 * 60 * 60 * 60; // 60 hour cycle
     const timeBetweenPosts = postCycle / categories.length; 
 
     async function getNewArticleAndPostToReddit(){
-        index++; 
+        const index = dbMethods.getIndex();
         try {
-            const cur_category_index = index % categories.length;
-            const { searchTerm, subreddit } = categories[cur_category_index];
+            const { searchTerm, subreddit } = categories[index];
             const article = await getNewestGoogleSearchFor(searchTerm);
-            
-            if (!article){
-                return getNewArticleAndPostToReddit(); 
+            if (article !== null){
+                // console.log(article);
+                await postToReddit(subreddit, article); 
+            } else {
+                // console.log('no article... :(')
             }
-            await postToReddit(subreddit, article); 
+            dbMethods.recordArticle(article, index, subreddit);
         }
-        catch(err){ /* Do nothing... ¯\_(ツ)_/¯ */ }
+        catch(err){ 
+            dbMethods.recordError(err);
+        }
 
+        dbMethods.incrementIndex();
         setTimeout(getNewArticleAndPostToReddit, timeBetweenPosts);
     }; 
 

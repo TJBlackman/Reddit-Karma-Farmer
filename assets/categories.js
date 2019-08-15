@@ -40,10 +40,6 @@ module.exports = [
         "subreddit": "/r/australia"
     },
     {
-        "searchTerm": "coachella|future Coachella|coachella news",
-        "subreddit": "/r/Coachella"
-    },
-    {
         "searchTerm": "inurl:colorado",
         "subreddit": "/r/colorado"
     },
@@ -234,10 +230,6 @@ module.exports = [
     {
         "searchTerm": "soccer|\"soccer player\"|\"soccer coach\"|\"soccer team\"|\"pro soccer\"",
         "subreddit": "/r/soccer"
-    },
-    {
-        "searchTerm": "star wars",
-        "subreddit": "/r/StarWars"
     },
     {
         "searchTerm": "inurl:nevada",

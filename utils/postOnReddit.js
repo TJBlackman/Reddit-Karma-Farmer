@@ -1,10 +1,13 @@
 const puppeteer = require('puppeteer-core');
+// const puppeteer = require('puppeteer');
 const creds = require('../assets/credentials');
+const dbMethods = require('./databaseMethods');
  
 module.exports = function(subreddit, post_object){
   return new Promise((resolve, reject) => {
     try {
       puppeteer.launch({executablePath: '/usr/bin/chromium-browser'}).then(async browser => {
+      // puppeteer.launch().then(async browser => {
         try {
           console.log(`Now posting article on ${subreddit}: `, post_object)
           const page = await browser.newPage();
@@ -19,12 +22,15 @@ module.exports = function(subreddit, post_object){
             });
           }, creds);
 
+          // await page.screenshot({path: 'login.png'})
+          
           await page.evaluate(function(creds){
             return new Promise((res, rej) => {
               document.querySelector('[action="/login"]').submit();
               res();
             });
           }, creds);
+          
 
           await page.waitForNavigation();
           
@@ -55,28 +61,30 @@ module.exports = function(subreddit, post_object){
           await page.type('textarea[placeholder="Title"]', post_object.title, { delay: 100 });
           await page.type('textarea[placeholder="Url"]', post_object.link, { delay: 100 });
   
+          // await page.screenshot({path: 'formfilled.png'})
+
           // find and click the post button
           await page.evaluate(function(){
-            return new Promise((res, rej) => {
-              Array.from(document.querySelectorAll('button')).some(button => {
-                if (button.innerText === 'POST'){
-                  button.click(); 
-                  res(); 
-                  return true; 
-                }
-              })
+            Array.from(document.querySelectorAll('button')).some(button => {
+              if (button.innerText === 'POST'){
+                button.click(); 
+                return true; 
+              }
             });
           }); 
           await page.waitFor(5000); 
-          browser.close();
+          // await page.screenshot({path: 'final.png'})
           resolve(); 
         }
         catch(err){
-          browser.close();
+          resolve(); 
+          dbMethods.recordError(err);
         }
+        browser.close();
       });
     }
     catch(err){
+      dbMethods.recordError(err);
       resolve();
     }
   }); 

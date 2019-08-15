@@ -1,0 +1,90 @@
+{
+  "errors": [
+    {
+      "time": "4/22/2019, 4:51:23 AM",
+      "message": "Evaluation failed: ReferenceError: res is not defined\n    at Array.from.some.button (__puppeteer_evaluation_script__:5:17)\n    at Array.some (<anonymous>)\n    at __puppeteer_evaluation_script__:2:61"
+    }
+  ],
+  "index": 16,
+  "articles": [
+    {
+      "score": 0,
+      "buzzwords": [],
+      "title": "Scouting Expert Chris Landry on Alabama Spring Game and LSU's ...",
+      "link": "https://tide1029.com/scouting-expert-chris-landry-on-alabama-spring-game-and-lsus-new-ad/",
+      "time": 59,
+      "timestamp": "4/19/2019, 11:24:54 PM",
+      "subreddit": "/r/alabama"
+    },
+    {
+      "score": 0,
+      "buzzwords": [],
+      "title": "A look inside Troon's Hawaii operations",
+      "link": "https://www.bizjournals.com/pacific/news/2019/04/19/a-look-inside-troons-hawaii-operations.html",
+      "time": 17,
+      "timestamp": "4/20/2019, 12:46:45 AM",
+      "subreddit": "/r/hawaii"
+    },
+    {
+      "score": 0,
+      "buzzwords": [],
+      "title": "KFOX14 speaks to New Mexico militia group about migrant ...",
+      "link": "https://kfoxtv.com/news/local/kfox14-speaks-to-new-mexico-militia-group-about-migrant-apprehensions",
+      "time": 53,
+      "timestamp": "4/20/2019, 1:22:10 AM",
+      "subreddit": "/r/newmexico"
+    },
+    {
+      "score": 0,
+      "buzzwords": [],
+      "title": "Monday, April 22: Main Streets and Back Roads/Bristol, Rhode Island",
+      "link": "https://www.wcvb.com/article/monday-april-22-main-streets-and-back-roads-bristol-rhode-island/27209547",
+      "time": 45,
+      "timestamp": "4/20/2019, 1:57:35 AM",
+      "subreddit": "/r/rhodeisland"
+    },
+    "FAILED | 4/22/2019, 4:40:01 AM | /r/fitness",
+    {
+      "score": 0,
+      "buzzwords": [],
+      "title": "Third-gen AMD Ryzen 3 CPUs are seemingly available in China ...",
+      "link": "https://klgadgetguy.com/2019/04/22/third-gen-amd-ryzen-3-cpus-are-seemingly-available-in-china-hinting-its-introduction-at-computex-2019/",
+      "time": 57,
+      "timestamp": "4/22/2019, 4:42:29 AM",
+      "subreddit": "/r/gadgets"
+    },
+    "FAILED | 4/22/2019, 4:44:29 AM | /r/connecticut",
+    {
+      "score": 0,
+      "buzzwords": [],
+      "title": "'I was shaking': Missouri man from Sri Lanka waits by phone to hear ...",
+      "link": "https://fox4kc.com/2019/04/21/i-was-shaking-missouri-man-from-sri-lanka-waits-by-phone-to-hear-family-is-safe/",
+      "time": 43,
+      "timestamp": "4/22/2019, 4:56:17 AM",
+      "subreddit": "/r/missouri"
+    },
+    "FAILED | 4/22/2019, 4:57:27 AM | /r/baseball",
+    "FAILED | 4/22/2019, 4:57:55 AM | /r/australia",
+    "FAILED | 4/23/2019, 1:16:36 AM | /r/colorado",
+    {
+      "score": 0,
+      "buzzwords": [],
+      "title": "Arkansas law allows school districts to provide take-home meals to ...",
+      "link": "https://www.wdbj7.com/content/news/Arkansas-law-allows-school-districts-to-provide-take-home-meals-to-students-508922091.html",
+      "time": 50,
+      "timestamp": "4/23/2019, 1:53:14 AM",
+      "subreddit": "/r/arkansas"
+    },
+    "FAILED | 4/23/2019, 2:28:38 AM | /r/canada",
+    "FAILED | 4/23/2019, 3:04:02 AM | /r/mademesmile",
+    "FAILED | 8/11/2019, 7:53:22 PM | /r/newyork",
+    {
+      "score": 0,
+      "buzzwords": [],
+      "title": "Quake Damage Estimate Tops $5B at California Navy Base",
+      "link": "https://www.nbclosangeles.com/news/local/Quake-Damage-Estimate-Tops-5B-at-California-Navy-Base-543378951.html",
+      "timestamp": "8/14/2019, 9:55:06 PM",
+      "subreddit": "/r/california"
+    }
+  ]
+}
