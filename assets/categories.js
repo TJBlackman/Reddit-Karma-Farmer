@@ -8,6 +8,10 @@ module.exports = [
         "subreddit": "/r/hawaii"
     },
     {
+        "searchTerm": "inurl:\"Destiny 2\"",
+        "subreddit": "/r/DestinyTheGame"
+    },
+    {
         "searchTerm": "inurl:new mexico",
         "subreddit": "/r/newmexico"
     },
@@ -16,11 +20,15 @@ module.exports = [
         "subreddit": "/r/rhodeisland"
     },
     {
-        "searchTerm": "fitness|healthy fitness|physical fitness|workout fitness",
+        "searchTerm": "inurl:fifa",
+        "subreddit": "/r/fifa"
+    },
+    {
+        "searchTerm": "inurl:fitness",
         "subreddit": "/r/fitness"
     },
     {
-        "searchTerm": "gadget|gizmo|contraption|\"new device\"|\"new invention\"",
+        "searchTerm": "inurl:gadgets",
         "subreddit": "/r/gadgets"
     },
     {
@@ -36,7 +44,7 @@ module.exports = [
         "subreddit": "/r/baseball"
     },
     {
-        "searchTerm": "australia",
+        "searchTerm": "inurl:australia",
         "subreddit": "/r/australia"
     },
     {
@@ -52,11 +60,7 @@ module.exports = [
         "subreddit": "/r/canada"
     },
     {
-        "searchTerm": "karma|funny|uplifting|optimistic|happy|bright",
-        "subreddit": "/r/mademesmile"
-    },
-    {
-        "searchTerm": "inurl:new york",
+        "searchTerm": "inurl:\"new york\"",
         "subreddit": "/r/newyork"
     },
     {
@@ -64,16 +68,20 @@ module.exports = [
         "subreddit": "/r/california"
     },
     {
-        "searchTerm": "dogs",
+        "searchTerm": "inurl:dog",
         "subreddit": "/r/dogs"
-    },
-    {
-        "searchTerm": "technology|tech|new tech",
-        "subreddit": "/r/technology"
     },
     {
         "searchTerm": "inurl:maine",
         "subreddit": "/r/maine"
+    },
+    {
+        "searchTerm": "inurl:nasa",
+        "subreddit": "/r/nasa"
+    },
+    {
+        "searchTerm": "inurl:twitch",
+        "subreddit": "/r/twitch"
     },
     {
         "searchTerm": "\"PS4\"|\"playstation 4\"",
@@ -100,11 +108,11 @@ module.exports = [
         "subreddit": "/r/pennsylvania"
     },
     {
-        "searchTerm": "legal marijuana",
+        "searchTerm": "recreational cannabis",
         "subreddit": "/r/trees"
     },
     {
-        "searchTerm": "\"League of legends\"|\"lol League champion\"|\"esport league of legends\"|\"league of legends gamer\"",
+        "searchTerm": "\"league of legends\"",
         "subreddit": "/r/leagueoflegends"
     },
     {
@@ -112,11 +120,15 @@ module.exports = [
         "subreddit": "/r/tennessee"
     },
     {
+        "searchTerm": "inurl:nintendo",
+        "subreddit": "/r/nintendo"
+    },
+    {
         "searchTerm": "inurl:new jersey",
         "subreddit": "/r/newjersey"
     },
     {
-        "searchTerm": "american football|NFL",
+        "searchTerm": "inurl:nfl",
         "subreddit": "/r/nfl"
     },
     {
@@ -124,7 +136,7 @@ module.exports = [
         "subreddit": "/r/louisiana"
     },
     {
-        "searchTerm": "art|artwork|artist|painting|sculpture",
+        "searchTerm": "inurl:art",
         "subreddit": "/r/art"
     },
     {
@@ -164,10 +176,6 @@ module.exports = [
         "subreddit": "/r/utah"
     },
     {
-        "searchTerm": "karma|funny|uplifting|optimistic|happy|bright",
-        "subreddit": "/r/UpliftingNews"
-    },
-    {
         "searchTerm": "inurl:maryland",
         "subreddit": "/r/maryland"
     },
@@ -188,7 +196,7 @@ module.exports = [
         "subreddit": "/r/georgia"
     },
     {
-        "searchTerm": "NBA|men's basketball|pro basketball",
+        "searchTerm": "inurl:nba",
         "subreddit": "/r/nba"
     },
     {
@@ -200,7 +208,7 @@ module.exports = [
         "subreddit": "/r/ohio"
     },
     {
-        "searchTerm": "bitcoin",
+        "searchTerm": "inurl:bitcoin",
         "subreddit": "/r/Bitcoin"
     },
     {
@@ -224,11 +232,11 @@ module.exports = [
         "subreddit": "/r/southcarolina"
     },
     {
-        "searchTerm": "cats",
+        "searchTerm": "feline",
         "subreddit": "/r/cats"
     },
     {
-        "searchTerm": "soccer|\"soccer player\"|\"soccer coach\"|\"soccer team\"|\"pro soccer\"",
+        "searchTerm": "inurl:mls",
         "subreddit": "/r/soccer"
     },
     {
@@ -240,20 +248,12 @@ module.exports = [
         "subreddit": "/r/wisconsin"
     },
     {
-        "searchTerm": "space|Astrophysics|cosmology",
-        "subreddit": "/r/space"
-    },
-    {
         "searchTerm": "\"video game\" OR \"video games\"",
         "subreddit": "/r/gaming"
     },
     {
         "searchTerm": "inurl:washington",
         "subreddit": "/r/washington"
-    },
-    {
-        "searchTerm": "astronomy|biology|medicine|physics|social science",
-        "subreddit": "/r/science"
     },
     {
         "searchTerm": "\"Marvel Studios\"|\"Marvel Universe\"|\"Marvel superhero\"|\"marvel hero\"",
@@ -264,11 +264,11 @@ module.exports = [
         "subreddit": "/r/montana"
     },
     {
-        "searchTerm": "spacex",
+        "searchTerm": "inurl:spacex",
         "subreddit": "/r/spacex"
     },
     {
-        "searchTerm": "international country national",
+        "searchTerm": "international national",
         "subreddit": "/r/worldnews"
     },
     {
@@ -276,16 +276,24 @@ module.exports = [
         "subreddit": "/r/unitedkingdom"
     },
     {
+        "searchTerm": "inurl:\"Star Wars\"",
+        "subreddit": "/r/starwars"
+    },
+    {
         "searchTerm": "America United State International",
         "subreddit": "/r/news"
     },
     {
-        "searchTerm": "books|\"fiction book\"|\"non-fiction book\"",
-        "subreddit": "/r/books"
-    },
-    {
         "searchTerm": "inurl:illinois",
         "subreddit": "/r/illinois"
+    },
+    {
+        "searchTerm": "inurl:minecraft",
+        "subreddit": "/r/minecraft"
+    },
+    {
+        "searchTerm": "inurl:hearthstone",
+        "subreddit": "/r/hearthstone"
     },
     {
         "searchTerm": "inurl:oklahoma",
@@ -312,23 +320,23 @@ module.exports = [
         "subreddit": "/r/texas"
     },
     {
-        "searchTerm": "hockey|NHL|professional hockey",
+        "searchTerm": "inurl:nhl",
         "subreddit": "/r/hockey"
     },
     {
-        "searchTerm": "economics",
+        "searchTerm": "inurl:economic",
         "subreddit": "/r/economics"
     },
     {
-        "searchTerm": "music|\"music artist\"",
+        "searchTerm": "inurl:music",
         "subreddit": "/r/music"
     },
     {
-        "searchTerm": "sports|sport|espn|athlete",
+        "searchTerm": "inurl:espn",
         "subreddit": "/r/sports"
     },
     {
-        "searchTerm": "\"nintendo switch\"",
+        "searchTerm": "inurl:\"nintendo switch\"",
         "subreddit": "/r/NintendoSwitch"
     },
     {
@@ -344,7 +352,7 @@ module.exports = [
         "subreddit": "/r/gameofthrones"
     },
     {
-        "searchTerm": "celebrities",
+        "searchTerm": "inurl:celebrity",
         "subreddit": "/r/celebrities"
     },
     {
@@ -352,59 +360,51 @@ module.exports = [
         "subreddit": "/r/nebraska"
     },
     {
-        "searchTerm": "cooking|recipe|foodie",
-        "subreddit": "/r/food"
-    },
-    {
-        "searchTerm": "college basketball",
+        "searchTerm": "inurl:\"college basketball\"",
         "subreddit": "/r/CollegeBasketball"
     },
     {
-        "searchTerm": "playstation game|xbox game|video game",
-        "subreddit": "/r/games"
-    },
-    {
-        "searchTerm": "American 2019 politics",
+        "searchTerm": "inurl:politics",
         "subreddit": "/r/politics"
     },
     {
-        "searchTerm": "xboxone",
+        "searchTerm": "inurl:xbox-one",
         "subreddit": "/r/xboxone"
     },
     {
-        "searchTerm": "iphone|apple",
+        "searchTerm": "inurl:iphone",
         "subreddit": "/r/iphone"
-    },
-    {
-        "searchTerm": "\"television show\"|\"tv actor\"|netflix|hulu|abc|cbs",
-        "subreddit": "/r/television"
     },
     {
         "searchTerm": "inurl:florida",
         "subreddit": "/r/florida"
     },
     {
-        "searchTerm": "\"MMA\"|\"mixed martial arts\"",
+        "searchTerm": "inurl:mma",
         "subreddit": "/r/mma"
-    },
-    {
-        "searchTerm": "gardening|lawn care|landscaping",
-        "subreddit": "/r/gardening"
     },
     {
         "searchTerm": "inurl:virginia",
         "subreddit": "/r/virginia"
     },
     {
-        "searchTerm": "tesla",
+        "searchTerm": "inurl:tesla",
         "subreddit": "/r/teslamotors"
     },
     {
-        "searchTerm": "\"Fortnite\"|\"fortnite gamer\"|\"fornite game\"|\"fortnite battle royal\"|\"fornite epic games\"",
+        "searchTerm": "inurl:Fortnite",
         "subreddit": "/r/fortnitebr"
     },
     {
         "searchTerm": "inurl:kentucky",
         "subreddit": "/r/kentucky"
+    },
+    {
+        "searchTerm": "inurl:overwatch",
+        "subreddit": "/r/overwatch"
+    },
+    {
+        "searchTerm": "inurl:pokemongo",
+        "subreddit": "/r/pokemongo"
     }
-]
+];
