@@ -1,3 +1,8 @@
+// searchTerm = search google for this string
+// https://www.google.com/search?q=__SEARCH_TERM_HERE__&tbs=qdr:d,sbd:1&tbm=nws&num=100
+ 
+// subreddit = subreddit to post found news article on
+
 module.exports = [
     {
         "searchTerm": "inurl:alabama",

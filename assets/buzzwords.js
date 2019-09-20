@@ -1,3 +1,5 @@
+// buzz words - the more a google news story has in the title, the better it might be recieved as a Reddit Post
+
 module.exports = [
     "amazing",
     "announcing",

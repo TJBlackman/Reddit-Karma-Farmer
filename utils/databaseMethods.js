@@ -10,9 +10,13 @@ const incrementIndex = function(){
     db.update('index', i => i === categories.length - 1 ? 0 : i+=1).write();
 };
 
+const setIndex = function(num){
+    db.set('index', num).write(); 
+}
+
 // retrieve index
 const getIndex = function(){
-    return db.get('index').value();
+    return db.get('index').value() || 0;
 };
 
 // record an error
@@ -46,8 +50,9 @@ const recordArticle = function(article, index, subreddit){
 
 
 module.exports = {
-    incrementIndex: incrementIndex,
-    getIndex: getIndex,
-    recordError: recordError,
-    recordArticle: recordArticle
+    incrementIndex,
+    getIndex,
+    recordError,
+    recordArticle,
+    setIndex
 }

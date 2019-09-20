@@ -1,26 +1,33 @@
 # Reddit Karma Farmer
 
-#### About
-Reddit Karma Farmer is a Node app that posts news stories to their appropriate subreddits, in hopes of farming upvote Karma on Reddit. An `assets/categories.json` file contains a hand-crafted array of search terms, paired wih subreddits. For each pair, this app will use a headless chrome instance to search Google News based on the search terms, then select a news article. Next, it navigates to Reddit and logs in with credentials from the `assets/credentials.js` file. It then redirects to the paired subreddit, and posts the news article. A `setInterval()` is used to loop through all posts, about every 30 minutes. A simple .json file is written to after each post, as a quick and simple databse.
+### About
+Reddit Karma Farmer is a headless Node app that can post news stories to Reddit.com, comment on posts, or comment on comments. The goal is to farm Reddit Karma for new accounts. This is a joke/hobby project, and is not regularly maintained.
 
-I chose to use Headless Chrome via Puppeteer instead of the Reddit API because it was super fast development and I didn't have to read any Reddit API docs. I also already know how to use Puppeteer, which made it effecient. The API would be faster operationally, but at a rate of 1 post per 36 minues, it doesn't really matter. This is a joke hobby project anyway! 
+###### Posting
+The Post script will gather recent News articles from Google and post a link to them on the appropriate subreddit. The `assets/categories.json` file contains pairs of search terms and subreddits. The `assets/credentials.js` file contains the username and password for the Reddit account you are farming karma for. Run with `npm run post` or use a process manager like PM2; `pm2 start RedditPost.js --name KarmaFarmer`.
 
-#### Start Up
-With the Node runtime environment and NPM installed on your machine, simply run `node PostNewsStories.js`, or use a process manager like PM2 to run the PostNewsStories.js file.
+###### Commenting on Posts
+This Comment script is designed to find a random rising post, and leave a comment on that post. Again, the `assets/credentials.js` file contains the username and password for the Reddit account you are farming karma for. The `assets/commentOnPostPhrases.js` file contains the list of phrases that this script will cycle through and use in it's comments. Run with `npm run commentOnPost` or use a process manager like PM2; `pm2 start RedditPostComment.js --name KarmaFarmer`.
 
-#### Raspberry Pi Model 3 Startup
+###### Commenting on Comments
+This Comment script is designed to find the top rated comment on a rising post, and then simply agree with that comment. Again, the `assets/credentials.js` file contains the username and password for the Reddit account you are farming karma for. The `assets/agreeWithCommentPhrases.js` file contains a list of phrases that is cycled through when commenting. Run with `npm run commentOnComment` or use a process manager like PM2; `pm2 start RedditCommentComment.js --name KarmaFarmer`.
+
+### Requirements
+Node and NPM must be install on your machine. Clone this project, `cd` into the root directory, run `npm install` to install dependancies, then run the program you want to run with the commands listed above.
+
+### Raspberry Pi Model 3 Startup
 Raspberry Pi in this guide is running Raspbian GNU/Linux 9 (stretch).  
 Install NPM on your pi, if it is not already installed.  
-Download the proper chromium version:  
-    `sudo apt install chromium-browser chromium-codecs-ffmpeg`  
-Install correct puppeteer version:  
-    `npm install puppeteer-core@v1.11.0`  
-Finally, in the project, when instantiating Puppeteer, use the version of Puppeteer we installed ealier  
-    `const puppeteer = require('puppeteer-core');`  
-AND - point to the chromium browser we specifically downloaded:  
-    `const browser = await puppeteer.launch({executablePath: '/usr/bin/chromium-browser'});`
+- Download the proper chromium version:  
+  - `sudo apt install chromium-browser chromium-codecs-ffmpeg`  
+- Install correct puppeteer core version:  
+   - `npm install puppeteer-core@v1.11.0`  
+- Finally, in the project, when instantiating Puppeteer, use the version of Puppeteer we installed ealier  
+   - `const puppeteer = require('puppeteer-core');`  
+- AND - point to the chromium browser we specifically downloaded:  
+   - `const browser = await puppeteer.launch({executablePath: '/usr/bin/chromium-browser'});`
     
-#### Technology & Skills
+### Technology & Skills
 - Javascript in a Node environment
 - DOM Scraping Techniques
 - Headless Chrome
