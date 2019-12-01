@@ -1,6 +1,7 @@
 .DS_Store
 node_modules/
+screenshots/
 
 credentials.js
 RedditLookAtThat.js
-lookAtThatPhrases.js
+*/lookAtThatPhrases.js

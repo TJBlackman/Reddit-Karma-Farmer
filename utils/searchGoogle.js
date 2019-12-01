@@ -1,5 +1,5 @@
-// const puppeteer = require('puppeteer-core');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+// const puppeteer = require('puppeteer');
 const buzz_words = require('../assets/buzzwords');
 const badwords = require('../assets/badwords');
 const dbMethods = require('./databaseMethods');
@@ -7,8 +7,8 @@ const dbMethods = require('./databaseMethods');
 module.exports = (searchString) => {
     return new Promise(async (resolve, reject) => {
         
-        // const browser = await puppeteer.launch({executablePath: '/usr/bin/chromium-browser', args: ['--disable-notifications']});
-        const browser = await puppeteer.launch({headless: false, args: ['--disable-notifications']});
+        const browser = await puppeteer.launch({executablePath: '/usr/bin/chromium-browser'});
+        // const browser = await puppeteer.launch({headless: false, args: ['--disable-notifications']});
         
         try {
             const page = await browser.newPage();

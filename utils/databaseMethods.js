@@ -20,13 +20,14 @@ const getIndex = function(){
 };
 
 // record an error
-const recordError = function(err){
+const recordError = function(err, imgPath){
     db.get('errors')
         .push({
             time: new Date().toLocaleString(),
             message: err.message,
             fileName: err.fileName,
-            line: err.lineNumber
+            line: err.lineNumber,
+            imagePath: imgPath
         })
         .write();
 }
