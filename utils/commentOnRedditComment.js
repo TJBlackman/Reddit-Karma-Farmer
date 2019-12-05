@@ -1,15 +1,17 @@
-const puppeteer = require('puppeteer-core');
-// const puppeteer     = require('puppeteer');
+// const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const creds = require('../assets/credentials');
 const dbMethods = require('./databaseMethods');
 const path = require('path');
 
 module.exports = function(comment) {
   return new Promise((resolve, reject) => {
+    // puppeteer
+    //   .launch({ executablePath: '/usr/bin/chromium-browser' })
+    //   .then(async browser => {
     puppeteer
-      .launch({ executablePath: '/usr/bin/chromium-browser' })
+      .launch({ headless: true, args: ['--disable-notifications'] })
       .then(async browser => {
-        // puppeteer.launch({headless: true, args: ['--disable-notifications']}).then(async browser => {
         const page = await browser.newPage();
         try {
           await page.goto('https://www.reddit.com/login/');
@@ -72,6 +74,10 @@ module.exports = function(comment) {
           await page.evaluate(function() {
             return new Promise((res, rej) => {
               var topComment = document.querySelector('.Comment');
+              if (topComment.innerText.includes('Stickied comment')) {
+                topComment.remove();
+                topComment = document.querySelector('.Comment');
+              }
               var replyButton = Array.from(
                 topComment.querySelectorAll('button')
               ).find(item => item.innerText.toLowerCase().includes('reply'));
