@@ -1,25 +1,4 @@
 {
-  "index": 22,
-  "errors": [
-    {
-      "time": "12/1/2019, 10:37:05 AM",
-      "message": "Evaluation failed: TypeError: Cannot read property 'click' of undefined\n    at __puppeteer_evaluation_script__:7:27\n    at new Promise (<anonymous>)\n    at __puppeteer_evaluation_script__:2:20",
-      "imagePath": "/Users/trevorblackman/Projects/KarmaFarmer/screenshots/1575221825634.png"
-    },
-    {
-      "time": "12/1/2019, 11:11:22 AM",
-      "message": "Evaluation failed: TypeError: Cannot read property 'click' of undefined\n    at __puppeteer_evaluation_script__:7:27\n    at new Promise (<anonymous>)\n    at __puppeteer_evaluation_script__:2:20",
-      "imagePath": "/Users/trevorblackman/Projects/KarmaFarmer/screenshots/1575223882218.png"
-    },
-    {
-      "time": "12/1/2019, 12:54:09 PM",
-      "message": "Protocol error (Page.navigate): Invalid parameters url: string value expected",
-      "imagePath": "/Users/trevorblackman/Projects/KarmaFarmer/screenshots/1575230048775.png"
-    },
-    {
-      "time": "12/1/2019, 1:28:25 PM",
-      "message": "No node found for selector: textarea",
-      "imagePath": "/Users/trevorblackman/Projects/KarmaFarmer/screenshots/1575232105459.png"
-    }
-  ]
+  "index": 34,
+  "errors": []
 }

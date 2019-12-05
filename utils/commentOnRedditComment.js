@@ -10,7 +10,7 @@ module.exports = function(comment) {
     //   .launch({ executablePath: '/usr/bin/chromium-browser' })
     //   .then(async browser => {
     puppeteer
-      .launch({ headless: true, args: ['--disable-notifications'] })
+      .launch({ headless: false, args: ['--disable-notifications'] })
       .then(async browser => {
         const page = await browser.newPage();
         try {
@@ -103,7 +103,59 @@ module.exports = function(comment) {
             '[data-test-id="comment-submission-form-markdown"] [type="submit"]'
           );
 
-          await page.waitFor(2000);
+          await page.waitFor(1000);
+
+          // go to my profile > comment hisory
+          await page.goto(
+            `https://www.reddit.com/user/${creds.username}/comments/?sort=new`
+          );
+
+          await page.waitFor(10000);
+
+          // delete any negative comments to prevent more downvotes
+          await page.waitForSelector('.Comment');
+          await page.evaluate(function() {
+            return new Promise(async res => {
+              const __sleep = time => new Promise(res => setTimeout(res, time));
+
+              const comments = document.querySelectorAll('.Comment');
+              comments.forEach(comment => {
+                // check for downvotes
+                comment.querySelectorAll('span').forEach(async span => {
+                  if (span.innerText.includes('points')) {
+                    if (span.innerText.includes('-')) {
+                      comment.querySelector('.icon-menu').click();
+
+                      await __sleep(500);
+
+                      document
+                        .querySelector('[role="menu"]')
+                        .querySelectorAll('button')
+                        .forEach(async btn => {
+                          if (btn.innerText === 'Delete') {
+                            btn.click();
+
+                            await __sleep(500);
+
+                            document
+                              .querySelector('[aria-modal="true"]')
+                              .querySelectorAll('button')
+                              .forEach(async btn => {
+                                if (btn.innerText === 'DELETE') {
+                                  btn.click();
+
+                                  await __sleep(500);
+                                }
+                              });
+                          }
+                        });
+                    }
+                  }
+                });
+              });
+              res();
+            });
+          });
         } catch (err) {
           const fileName = path.join(
             __dirname,
