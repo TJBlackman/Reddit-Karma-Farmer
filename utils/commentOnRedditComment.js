@@ -10,7 +10,7 @@ module.exports = function(comment) {
     //   .launch({ executablePath: '/usr/bin/chromium-browser' })
     //   .then(async browser => {
     puppeteer
-      .launch({ headless: false, args: ['--disable-notifications'] })
+      .launch({ headless: true, args: ['--disable-notifications'] })
       .then(async browser => {
         const page = await browser.newPage();
         try {
@@ -110,50 +110,72 @@ module.exports = function(comment) {
             `https://www.reddit.com/user/${creds.username}/comments/?sort=new`
           );
 
-          await page.waitFor(10000);
+          await page.waitFor(1000);
 
           // delete any negative comments to prevent more downvotes
           await page.waitForSelector('.Comment');
           await page.evaluate(function() {
-            return new Promise(async res => {
-              const __sleep = time => new Promise(res => setTimeout(res, time));
+            return new Promise(__resolve => {
+              (async () => {
+                const __sleep = time =>
+                  new Promise(res => setTimeout(res, time));
 
-              const comments = document.querySelectorAll('.Comment');
-              comments.forEach(comment => {
-                // check for downvotes
-                comment.querySelectorAll('span').forEach(async span => {
-                  if (span.innerText.includes('points')) {
-                    if (span.innerText.includes('-')) {
-                      comment.querySelector('.icon-menu').click();
+                const comments = document.querySelectorAll('.Comment');
+                for (let i = 0; i < comments.length; i++) {
+                  const comment = comments[i];
+                  const commentIsUpvoted = await (() =>
+                    new Promise(res => {
+                      let _isUpvoted = true;
+                      comment.querySelectorAll('span').forEach(span => {
+                        if (span.innerText.includes('points')) {
+                          if (span.innerText.includes('-')) {
+                            comment.querySelector('.icon-menu').click();
+                            _isUpvoted = false;
+                          }
+                        }
+                      });
+                      res(_isUpvoted);
+                    }))();
 
-                      await __sleep(500);
+                  await __sleep(250);
 
+                  // end here if comment has positive votes
+                  if (commentIsUpvoted) {
+                    continue;
+                  }
+
+                  await (() =>
+                    new Promise(res => {
                       document
                         .querySelector('[role="menu"]')
                         .querySelectorAll('button')
                         .forEach(async btn => {
                           if (btn.innerText === 'Delete') {
                             btn.click();
-
-                            await __sleep(500);
-
-                            document
-                              .querySelector('[aria-modal="true"]')
-                              .querySelectorAll('button')
-                              .forEach(async btn => {
-                                if (btn.innerText === 'DELETE') {
-                                  btn.click();
-
-                                  await __sleep(500);
-                                }
-                              });
                           }
                         });
-                    }
-                  }
-                });
-              });
-              res();
+                      res();
+                    }))();
+
+                  await __sleep(250);
+
+                  await (() =>
+                    new Promise(res => {
+                      document
+                        .querySelector('[aria-modal="true"]')
+                        .querySelectorAll('button')
+                        .forEach(async btn => {
+                          if (btn.innerText === 'DELETE') {
+                            btn.click();
+                          }
+                        });
+                      res();
+                    }))();
+
+                  await __sleep(250);
+                }
+                __resolve();
+              })();
             });
           });
         } catch (err) {

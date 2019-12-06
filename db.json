@@ -1,4 +1,10 @@
 {
-  "index": 34,
-  "errors": []
+  "index": 2,
+  "errors": [
+    {
+      "time": "12/5/2019, 5:03:03 PM",
+      "message": "waiting for selector \".Comment\" failed: timeout 30000ms exceeded",
+      "imagePath": "/Users/trevorblackman/Projects/KarmaFarmer/screenshots/1575590583740.png"
+    }
+  ]
 }
