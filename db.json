@@ -1,10 +1,20 @@
 {
-  "index": 2,
+  "index": 14,
   "errors": [
     {
-      "time": "12/5/2019, 5:03:03 PM",
-      "message": "waiting for selector \".Comment\" failed: timeout 30000ms exceeded",
-      "imagePath": "/Users/trevorblackman/Projects/KarmaFarmer/screenshots/1575590583740.png"
+      "time": "12/8/2019, 10:19:21 AM",
+      "message": "Protocol error (Page.navigate): Invalid parameters url: string value expected",
+      "imagePath": "/Users/trevorblackman/Projects/KarmaFarmer/screenshots/1575825560999.png"
+    },
+    {
+      "time": "12/8/2019, 3:23:56 PM",
+      "message": "Protocol error (Page.navigate): Invalid parameters url: string value expected",
+      "imagePath": "/Users/trevorblackman/Projects/KarmaFarmer/screenshots/1575843835761.png"
+    },
+    {
+      "time": "12/8/2019, 8:36:59 PM",
+      "message": "Navigation Timeout Exceeded: 30000ms exceeded",
+      "imagePath": "/Users/trevorblackman/Projects/KarmaFarmer/screenshots/1575862619590.png"
     }
   ]
 }

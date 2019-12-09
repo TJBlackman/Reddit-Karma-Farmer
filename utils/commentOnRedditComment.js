@@ -117,64 +117,68 @@ module.exports = function(comment) {
           await page.evaluate(function() {
             return new Promise(__resolve => {
               (async () => {
-                const __sleep = time =>
-                  new Promise(res => setTimeout(res, time));
+                try {
+                  const __sleep = time =>
+                    new Promise(res => setTimeout(res, time));
 
-                const comments = document.querySelectorAll('.Comment');
-                for (let i = 0; i < comments.length; i++) {
-                  const comment = comments[i];
-                  const commentIsUpvoted = await (() =>
-                    new Promise(res => {
-                      let _isUpvoted = true;
-                      comment.querySelectorAll('span').forEach(span => {
-                        if (span.innerText.includes('points')) {
-                          if (span.innerText.includes('-')) {
-                            comment.querySelector('.icon-menu').click();
-                            _isUpvoted = false;
+                  const comments = document.querySelectorAll('.Comment');
+                  for (let i = 0; i < comments.length; i++) {
+                    const comment = comments[i];
+                    const commentIsUpvoted = await (() =>
+                      new Promise(res => {
+                        let _isUpvoted = true;
+                        comment.querySelectorAll('span').forEach(span => {
+                          if (span.innerText.includes('points')) {
+                            if (span.innerText.includes('-')) {
+                              comment.querySelector('.icon-menu').click();
+                              _isUpvoted = false;
+                            }
                           }
-                        }
-                      });
-                      res(_isUpvoted);
-                    }))();
+                        });
+                        res(_isUpvoted);
+                      }))();
 
-                  await __sleep(250);
+                    await __sleep(250);
 
-                  // end here if comment has positive votes
-                  if (commentIsUpvoted) {
-                    continue;
+                    // end here if comment has positive votes
+                    if (commentIsUpvoted) {
+                      continue;
+                    }
+
+                    await (() =>
+                      new Promise(res => {
+                        document
+                          .querySelector('[role="menu"]')
+                          .querySelectorAll('button')
+                          .forEach(async btn => {
+                            if (btn.innerText === 'Delete') {
+                              btn.click();
+                            }
+                          });
+                        res();
+                      }))();
+
+                    await __sleep(250);
+
+                    await (() =>
+                      new Promise(res => {
+                        document
+                          .querySelector('[aria-modal="true"]')
+                          .querySelectorAll('button')
+                          .forEach(async btn => {
+                            if (btn.innerText === 'DELETE') {
+                              btn.click();
+                            }
+                          });
+                        res();
+                      }))();
+
+                    await __sleep(250);
                   }
-
-                  await (() =>
-                    new Promise(res => {
-                      document
-                        .querySelector('[role="menu"]')
-                        .querySelectorAll('button')
-                        .forEach(async btn => {
-                          if (btn.innerText === 'Delete') {
-                            btn.click();
-                          }
-                        });
-                      res();
-                    }))();
-
-                  await __sleep(250);
-
-                  await (() =>
-                    new Promise(res => {
-                      document
-                        .querySelector('[aria-modal="true"]')
-                        .querySelectorAll('button')
-                        .forEach(async btn => {
-                          if (btn.innerText === 'DELETE') {
-                            btn.click();
-                          }
-                        });
-                      res();
-                    }))();
-
-                  await __sleep(250);
+                  __resolve();
+                } catch (err) {
+                  __resolve();
                 }
-                __resolve();
               })();
             });
           });
@@ -183,7 +187,9 @@ module.exports = function(comment) {
             __dirname,
             `../screenshots/${Date.now()}.png`
           );
-          await page.screenshot({ path: fileName });
+          if (creds.debug) {
+            await page.screenshot({ path: fileName });
+          }
           dbMethods.recordError(err, fileName);
         }
         await browser.close();
