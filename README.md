@@ -1,28 +1,51 @@
 # Reddit Karma Farmer
 
-### About
+## About
 
-Reddit Karma Farmer is a headless Node app that can post news stories to Reddit.com, comment on posts, or comment on comments. The goal is to farm Reddit Karma for new accounts. This is a joke/hobby project, and is not regularly maintained.
+Reddit Karma Farmer is a Node app that can post news stories to Reddit.com, comment on posts, or comment on comments. The goal is to farm Reddit Karma for new accounts. This is a joke/hobby project, and is not regularly maintained.
 
-###### Posting
+## Installation
 
-The Post script will gather recent News articles from Google and post a link to them on the appropriate subreddit. The `assets/categories.json` file contains pairs of search terms and subreddits. The `assets/credentials.js` file contains the username and password for the Reddit account you are farming karma for. Run with `npm run post` or use a process manager like PM2; `pm2 start RedditPost.js --name KarmaFarmer`.
+Download this repo, then navigate to it's root directory and run `npm i` to download the dependancies. Also, create a `.env` file with the settings you want to use.
 
-###### Commenting on Posts
+| Commands    | Description                                         |
+| ----------- | --------------------------------------------------- |
+| npm run dev | Run app immediately with live reloads on file save. |
+| npm run pm2 | Run app continuously using pm2 daemon.              |
 
-This Comment script is designed to find a random rising post, and leave a comment on that post. Again, the `assets/credentials.js` file contains the username and password for the Reddit account you are farming karma for. The `assets/commentOnPostPhrases.js` file contains the list of phrases that this script will cycle through and use in it's comments. Run with `npm run commentOnPost` or use a process manager like PM2; `pm2 start RedditPostComment.js --name KarmaFarmer`.
+## Settings
 
-###### Commenting on Comments
+This program looks for a `.env` file in it's root directory. I've included a `sample.env` for you to model your own settings file from. If there is no `.env` file, this project will not run.
 
-This Comment script is designed to find the top rated comment on a rising post, and then simply agree with that comment. Again, the `assets/credentials.js` file contains the username and password for the Reddit account you are farming karma for. The `assets/agreeWithCommentPhrases.js` file contains a list of phrases that is cycled through when commenting. Run with `npm run commentOnComment` or use a process manager like PM2; `pm2 start RedditCommentComment.js --name KarmaFarmer`.
+| Setting             | Required | Default | Description                                                                          |
+| ------------------- | -------- | ------- | ------------------------------------------------------------------------------------ |
+| REDDIT_USERNAME     | Required | ""      | The Reddit username the program should use.                                          |
+| REDDIT_PASSWORD     | Required | ""      | The Reddit PASSWORD the program should use.                                          |
+| PROGRAM_ACTION      | Required | 1       | The action this program should run. See the list of PROGRAM_ACTION below.            |
+| INTERVAL_IN_MINUTES | Required | 13      | The amount of time to wait between each program action.                              |
+| CHROME_EXE_PATH     | Required | ""      | The path to a Chrome executable file on disk. General presets included in .env file. |
+
+## Program Actions
+
+The `PROGRAM_ACTION` value in the .env file will identify which of the following actions the program will run.
+
+##### Create New Reddit Post from Google News Story | PROGRAM_ACTION = 1
+
+The post script will gather recent News articles from Google and post a link to them on the appropriate subreddit. The `src/assets/post-categories.js` file contains pairs of search terms and subreddits. Execute this action by setting `PROGRAM_ACTION=1` in your .env file.
+
+###### Top Level Comment on Rising Post | PROGRAM_ACTION = 2
+
+This comment script is designed to find a random rising post, and leave a top level comment on that post. The `src/assets/comment-on-post-phrases.js` file contains the list of phrases that this script will cycle through and use in it's comments. Execute this action by setting `PROGRAM_ACTION=2` in your .env file.
+
+###### Comment on Top Level Comment on rising Post | PROGRAM_ACTION = 3
+
+This Comment script is designed to find the top rated comment on a rising post, and then simply agree with that comment. The `src/assets/comment-on-comment-phrases.js` file contains a list of phrases that is cycled through when commenting. Execute this action by setting `PROGRAM_ACTION=3` in your .env file.
 
 ### Requirements
 
-Node and NPM must be install on your machine. Clone this project, `cd` into the root directory, run `npm install` to install dependancies, then run the program you want to run with the commands listed above.
-
-#### Testing
-
-In `/assets/credentials.js`, you can set the debug property to true to enable console logging and screen capture at very specific moments.
+- Node
+- NPM
+- Chrome
 
 ### Raspberry Pi Model 3 Startup
 
@@ -31,17 +54,13 @@ Install NPM on your pi, if it is not already installed.
 
 - Download the proper chromium version:
   - `sudo apt install chromium-browser chromium-codecs-ffmpeg`
-- Install correct puppeteer core version:
-  - `npm install puppeteer-core@v1.11.0`
-- Finally, in the project, when instantiating Puppeteer, use the version of Puppeteer we installed ealier
-  - `const puppeteer = require('puppeteer-core');`
 - AND - point to the chromium browser we specifically downloaded:
-  - `const browser = await puppeteer.launch({executablePath: '/usr/bin/chromium-browser'});`
+  - `CHROME_EXE_PATH="/usr/bin/chromium-browser"`
 
 ### Technology & Skills
 
 - Javascript in a Node environment
 - DOM Scraping Techniques
 - Headless Chrome
-- Simple .json DB
+- Local .json DB
 - Browser Automated Tasks

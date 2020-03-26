@@ -1,10 +1,6 @@
-.DS_Store
 node_modules/
 screenshots/
 
-credentials.js
-RedditLookAtThat.js
-*/lookAtThatPhrases.js
-
-
+.DS_Store
+look-at-that-phrases.js
 .env

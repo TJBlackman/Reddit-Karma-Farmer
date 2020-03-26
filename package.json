@@ -13,5 +13,8 @@
     "dotenv": "^8.2.0",
     "lowdb": "^1.0.0",
     "puppeteer-core": "^1.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
