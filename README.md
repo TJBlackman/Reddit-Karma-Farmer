@@ -47,7 +47,7 @@ This Comment script is designed to find the top rated comment on a rising post, 
 - NPM
 - Chrome
 
-### Raspberry Pi Model 3 Startup
+### Raspberry Pi
 
 Raspberry Pi in this guide is running Raspbian GNU/Linux 9 (stretch).  
 Install NPM on your pi, if it is not already installed.
