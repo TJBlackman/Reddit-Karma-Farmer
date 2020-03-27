@@ -59,7 +59,7 @@ module.exports = async (commentStr) => {
     });
 
     await page.type('textarea', commentStr);
-    // await page.click('[data-test-id="comment-submission-form-markdown"] [type="submit"]');
+    await page.click('[data-test-id="comment-submission-form-markdown"] [type="submit"]');
     await page.waitFor(1000);
   } catch (err) {
     console.log('Error at: ', new Date().toLocaleTimeString());
