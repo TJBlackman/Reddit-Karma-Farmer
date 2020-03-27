@@ -33,13 +33,13 @@ The `PROGRAM_ACTION` value in the .env file will identify which of the following
 
 The post script will gather recent News articles from Google and post a link to them on the appropriate subreddit. The `src/assets/post-categories.js` file contains pairs of search terms and subreddits. Execute this action by setting `PROGRAM_ACTION=1` in your .env file.
 
-###### Top Level Comment on Rising Post | PROGRAM_ACTION = 2
+##### Top Level Comment on Rising Post | PROGRAM_ACTION = 2
 
 This comment script is designed to find a random rising post, and leave a top level comment on that post. The `src/assets/comment-on-post-phrases.js` file contains the list of phrases that this script will cycle through and use in it's comments. Execute this action by setting `PROGRAM_ACTION=2` in your .env file.
 
-###### Comment on Top Level Comment on rising Post | PROGRAM_ACTION = 3
+##### Comment on Top Level Comment on rising Post | PROGRAM_ACTION = 3
 
-This Comment script is designed to find the top rated comment on a rising post, and then simply agree with that comment. The `src/assets/comment-on-comment-phrases.js` file contains a list of phrases that is cycled through when commenting. Execute this action by setting `PROGRAM_ACTION=3` in your .env file.
+This Comment script is designed to find the top rated comment on a rising post, and then simply agree with that comment. The `src/assets/comment-on-comment-phrases.js` file contains a list of phrases that is cycled through when commenting. Finally, the program will evaluate your previous comments for downvoted comments in the negative vote range, and delete those comments to prevent more downvotes. Execute this action by setting `PROGRAM_ACTION=3` in your .env file.
 
 ### Requirements
 
@@ -47,7 +47,7 @@ This Comment script is designed to find the top rated comment on a rising post, 
 - NPM
 - Chrome
 
-### Raspberry Pi
+### Raspberry Pi Setup
 
 Raspberry Pi in this guide is running Raspbian GNU/Linux 9 (stretch).  
 Install NPM on your pi, if it is not already installed.

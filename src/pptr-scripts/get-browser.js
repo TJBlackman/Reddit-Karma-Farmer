@@ -11,6 +11,7 @@ module.exports = async () => {
     });
     return browser;
   } catch (err) {
+    console.log('Error at: ', new Date().toLocaleTimeString());
     console.log(err);
   }
 };

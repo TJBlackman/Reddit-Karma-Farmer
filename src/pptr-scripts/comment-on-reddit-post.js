@@ -2,7 +2,6 @@ const getBrowser = require('./get-browser');
 const logIntoReddit = require('./log-into-reddit');
 
 module.exports = async (commentStr) => {
-  console.log(commentStr);
   const browser = await getBrowser();
   try {
     const page = await browser.newPage();
@@ -45,6 +44,7 @@ module.exports = async (commentStr) => {
     await page.type('textarea', commentStr);
     await page.click('[data-test-id="comment-submission-form-markdown"] [type="submit"]');
   } catch (err) {
+    console.log('Error at: ', new Date().toLocaleTimeString());
     console.log(err);
   }
   browser.close();

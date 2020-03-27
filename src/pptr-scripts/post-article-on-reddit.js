@@ -44,6 +44,7 @@ module.exports = async (subreddit, article) => {
 
     await page.waitForNavigation();
   } catch (err) {
+    console.log('Error at: ', new Date().toLocaleTimeString());
     console.log(err);
   }
   browser.close();

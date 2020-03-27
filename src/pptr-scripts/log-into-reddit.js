@@ -13,6 +13,6 @@ module.exports = async (page) => {
       password: process.env.REDDIT_PASSWORD
     }
   );
-  await page.waitForNavigation();
-  return page;
+  await page.waitForNavigation({ waitUntil: 'networkidle0' });
+  return true;
 };

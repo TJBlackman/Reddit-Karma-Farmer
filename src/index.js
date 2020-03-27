@@ -1,6 +1,7 @@
 const postNewsStory = require('./services/reddit-post');
 const commentOnPost = require('./services/coment-on-post');
 const commentOnComment = require('./services/comment-on-comment');
+const deleteNegativeComments = require('./pptr-scripts/delete-negative-comments');
 
 (async () => {
   let doPuppeteerAction = null;
@@ -15,6 +16,11 @@ const commentOnComment = require('./services/comment-on-comment');
     }
     case '3': {
       doPuppeteerAction = commentOnComment;
+      break;
+    }
+    case '69': {
+      // Development - meant for testing one pptr script at a time
+      doPuppeteerAction = deleteNegativeComments;
       break;
     }
     default: {

@@ -52,18 +52,10 @@ module.exports = async (searchString) => {
         return all_results;
       });
     }
-
-    if (process.env.DEBUG === 'true') {
-      console.log('1 Hour Results: ', oneHourResults);
-      console.log('1 Day Results: ', oneDayResults);
-      await page.waitFor(5000);
-    }
-
-    // close browser
     browser.close();
-
     return oneHourResults ? oneHourResults : oneDayResults;
   } catch (err) {
+    console.log('Error at: ', new Date().toLocaleTimeString());
     console.log(err);
     browser.close();
   }

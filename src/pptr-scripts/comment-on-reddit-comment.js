@@ -1,13 +1,17 @@
 const getBrowser = require('./get-browser');
 const logIntoReddit = require('./log-into-reddit');
+const path = require('path');
 
 module.exports = async (commentStr) => {
   const browser = await getBrowser();
   try {
-    const page = await browser.newPage();
-
+    let page = await browser.newPage();
     await logIntoReddit(page);
-    await page.goto(`https://www.reddit.com/r/all/rising/`);
+
+    // reloading reddit first helps page to not crash
+    await page.goto('https://www.reddit.com', { waitUntil: 'networkidle0', timeout: 60000 });
+    // now go to /rising
+    await page.goto('https://www.reddit.com/r/all/rising/', { waitUntil: 'networkidle0', timeout: 60000 });
 
     // choose random-ish rising post and go to it
     const link = await page.evaluate(async () => {
@@ -28,6 +32,9 @@ module.exports = async (commentStr) => {
         }, null);
       return randomLink;
     });
+    if (!link) {
+      throw Error('No link was returned. Cannot navigate to a post page.');
+    }
     await page.goto(link);
     await page.waitForSelector('.Comment');
 
@@ -52,77 +59,10 @@ module.exports = async (commentStr) => {
     });
 
     await page.type('textarea', commentStr);
-    await page.click('[data-test-id="comment-submission-form-markdown"] [type="submit"]');
+    // await page.click('[data-test-id="comment-submission-form-markdown"] [type="submit"]');
     await page.waitFor(1000);
-
-    // go to my profile > comment hisory
-    // delete any negative comments to prevent more downvotes
-    await page.goto(`https://www.reddit.com/user/${process.env.REDDIT_USERNAME}/comments/?sort=new`);
-    await page.waitForSelector('.Comment');
-    await page.evaluate(async () => {
-      try {
-        const __sleep = (time) => new Promise((res) => setTimeout(res, time));
-
-        const comments = document.querySelectorAll('.Comment');
-        for (let i = 0; i < comments.length; i++) {
-          const comment = comments[i];
-          const commentIsUpvoted = await (() =>
-            new Promise((res) => {
-              let _isUpvoted = true;
-              comment.querySelectorAll('span').forEach((span) => {
-                if (span.innerText.includes('points')) {
-                  if (span.innerText.includes('-')) {
-                    comment.querySelector('.icon-menu').click();
-                    _isUpvoted = false;
-                  }
-                }
-              });
-              res(_isUpvoted);
-            }))();
-
-          await __sleep(250);
-
-          // end here if comment has positive votes
-          if (commentIsUpvoted) {
-            continue;
-          }
-
-          await (() =>
-            new Promise((res) => {
-              document
-                .querySelector('[role="menu"]')
-                .querySelectorAll('button')
-                .forEach(async (btn) => {
-                  if (btn.innerText === 'Delete') {
-                    btn.click();
-                  }
-                });
-              res();
-            }))();
-
-          await __sleep(250);
-
-          await (() =>
-            new Promise((res) => {
-              document
-                .querySelector('[aria-modal="true"]')
-                .querySelectorAll('button')
-                .forEach(async (btn) => {
-                  if (btn.innerText === 'DELETE') {
-                    btn.click();
-                  }
-                });
-              res();
-            }))();
-
-          await __sleep(250);
-        }
-      } catch (err) {
-        // do nothing in browser...
-      }
-      return true;
-    });
   } catch (err) {
+    console.log('Error at: ', new Date().toLocaleTimeString());
     console.log(err);
   }
   browser.close();

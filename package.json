@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "pm2": "pm2 start",
-    "dev": "nodemon --ext js -r dotenv/config ./src/index.js"
+    "dev": "nodemon --ext js -r dotenv/config ./src/index.js",
+    "file": "node -r dotenv/config ./src/pptr-scripts/delete-negative-comments.js"
   },
   "author": "",
   "license": "ISC",
