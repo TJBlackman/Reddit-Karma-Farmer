@@ -64,3 +64,9 @@ Install NPM on your pi, if it is not already installed.
 - Headless Chrome
 - Local .json DB
 - Browser Automated Tasks
+
+### Trouble Shooting
+
+Trouble shooting sucks. This list is sorted in order of easiest steps to most intricate steps you can take to trouble shoot. If you run into an issue and would like to add tips to this list, submit a pull request!
+
+- Manually confirm that your Reddit account email and password are valid.

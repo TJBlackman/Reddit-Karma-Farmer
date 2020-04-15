@@ -6,7 +6,14 @@ module.exports = async () => {
       executablePath: process.env.CHROME_EXE_PATH,
       headless: process.env.DEBUG === 'true' ? false : true,
       slowMo: process.env.DEBUG === 'true' ? 50 : 0,
-      args: ['--disable-notifications'],
+      args: [
+        '--disable-notifications',
+        '--disable-gpu',
+        '--no-sandbox',
+        '--lang=en-US',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage'
+      ],
       devtools: process.env.DEBUG === 'true' ? true : false
     });
     return browser;
