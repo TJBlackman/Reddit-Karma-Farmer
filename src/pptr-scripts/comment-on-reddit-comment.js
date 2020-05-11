@@ -15,22 +15,14 @@ module.exports = async (commentStr) => {
     const previousUrls = getAlreadyUsedPosts();
     // choose random-ish rising post and go to it
     const link = await page.evaluate(async (previousUrls) => {
-      // remove live broadcasts
-      const allRedditPosts = document.querySelectorAll('.Post');
-      const isBroadcastRegex = /<span>Broadcast<\/span>/;
-      let i = 0,
-        max = allRedditPosts.length;
-      for (; i < max; ++i) {
-        const el = allRedditPosts[i];
-        const html = el.innerHTML;
-        if (isBroadcastRegex.test(html)) {
-          el.remove();
-        }
-      }
       // select a link
       const randomLink = Array.from(document.querySelectorAll('[data-click-id="comments"]'))
         .filter((i) => {
           if (i.innerText.includes('k')) {
+            return false;
+          }
+          if (i.href.includes('/rpan/r/')) {
+            // remove live broadcasts
             return false;
           }
           if (previousUrls.includes(i.href)) {
@@ -56,13 +48,14 @@ module.exports = async (commentStr) => {
     if (!link) {
       throw Error('No link was returned. Cannot navigate to a post page.');
     }
+    console.log('Attempting comment on: ' + link);
     await page.goto(link, { waitUntil: 'load', timeout: 60000 });
-
+    await page.waitFor(1000);
     // remove stickied mod comments
     // click button to comment on top existing comment
     await page.evaluate(async () => {
       var topComment = document.querySelector('.Comment');
-      if (topComment.innerText.includes('Stickied comment')) {
+      if (topComment && topComment.innerText.includes('Stickied comment')) {
         topComment.remove();
         topComment = document.querySelector('.Comment');
       }
@@ -80,6 +73,7 @@ module.exports = async (commentStr) => {
     await page.type('textarea', commentStr);
     await page.click('[data-test-id="comment-submission-form-markdown"] [type="submit"]');
     recordAlreadyUsedPost(link);
+    console.log(`Successful comment at ${new Date().toLocaleString()}`);
     await page.waitFor(1000);
   } catch (err) {
     console.log('Error at: ', new Date().toLocaleTimeString());
